@@ -1,0 +1,18 @@
+{
+    "projectName": "Bloggist",
+    "username": "devorg@training.alti",
+    "id": "53f99870-6375-11e8-b13e-433aa93494b8",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://bloggist-dev-ed.my.salesforce.com",
+    "workspace": "C:\\Users\\gmondino\\Documents",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "CustomObject",
+        "StaticResource"
+    ]
+}
