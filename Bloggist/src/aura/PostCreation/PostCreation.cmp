@@ -1,0 +1,36 @@
+<aura:component controller="PostController">
+    <aura:registerEvent name="createPost" type="c:createPostEvent"/>
+	<aura:attribute name="newPost" type="Post__c"
+                    default="{ 'sobjectType': 'Post__c',
+                        'Title__c': '',
+                        'Status__c': 'Draft',
+                        'Tag__c': '',
+                        'Content__c': ''}"/>
+    
+    <lightning:layout >
+        <lightning:layoutItem padding="around-small" size="6">
+        <form class="slds-form--stacked">          
+            <lightning:input aura:id="postform" label="Title"
+                             name="posttitle"
+                             value="{!v.newPost.Title__c}"/> 
+        	<label class="slds-form-element__label" for="contentTextArea">Content</label>
+        	<textarea aura:id="postTextArea" class="slds-textarea" 
+                      id="contentTextArea"
+                      placeholder="Write your post here!" 
+                      value="{!v.newPost.Content__c}" />
+            <lightning:input aura:id="postform" label="Tags"
+                             name="posttags"      
+                             value="{!v.newPost.Tag__c}"/>
+            <lightning:button label="Create Post" 
+                              class="slds-m-top--medium"
+                              variant="brand"
+                              onclick="{!c.clickCreatePost}"/>
+        	<lightning:button label="Submit for approval" 
+                              class="slds-m-top--medium"
+                              variant="brand"
+                              onclick="{!c.clickSubmit}"/>
+        </form>
+        </lightning:layoutItem>
+    </lightning:layout>
+    
+</aura:component>

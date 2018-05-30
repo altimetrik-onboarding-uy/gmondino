@@ -1,7 +1,7 @@
 {
     "projectName": "Bloggist",
     "username": "devorg@training.alti",
-    "id": "53f99870-6375-11e8-b13e-433aa93494b8",
+    "id": "91b5b790-6440-11e8-8d1f-c59da723fc0b",
     "namespace": "",
     "orgType": "developer",
     "loginUrl": "https://login.salesforce.com/",
@@ -12,6 +12,7 @@
         "ApexComponent",
         "ApexPage",
         "ApexTrigger",
+        "AuraDefinitionBundle",
         "CustomObject",
         "StaticResource"
     ]

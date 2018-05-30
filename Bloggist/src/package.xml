@@ -17,6 +17,10 @@
         <name>ApexTrigger</name>
     </types>
     <types>
+        <members>*</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
         <members>Account</members>
         <members>AccountCleanInfo</members>
         <members>AccountContactRole</members>
