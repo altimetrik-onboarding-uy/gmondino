@@ -1,22 +1,24 @@
 <aura:component controller="PostController">
     <aura:registerEvent name="discardPostEvent" type="c:discardPostEvent"/>
+    <aura:registerEvent name="submitPostEvent" type="c:submitPostEvent"/>
 	<aura:attribute name="post" type="Post__c" required="true" 
                     default="{ 'sobjectType': 'Post__c',
                         'Title__c': 'default',
                         'Status__c': 'Draft',
                         'Tag__c': 'tag1,tag2',
                         'Content__c': 'Default content'}"/>
-    <aura:attribute name="typeSource" type="String"/>
+    <aura:attribute name="transferButton" type="String"/>
     
     <lightning:card footer="Authors name">
         <aura:set attribute="title">
             <lightning:formattedText value="{!v.post.Title__c}"></lightning:formattedText>
         </aura:set>
         <aura:set attribute="actions">
-            <lightning:button label="Sumbit for approval" onclick="{!c.submitForApproval}"/>
+            <lightning:button label="{!v.transferButton}" 
+                              onclick="{!c.changeStatus}"/>
             <lightning:button label="Discard" 
                               onclick="{!c.discard}"
-                              name="{!v.typeSource}"/>
+                              name="{!v.transferButton}"/>
         </aura:set>
         <lightning:formattedText value="{!v.post.Content__c}"></lightning:formattedText>
         <br></br>

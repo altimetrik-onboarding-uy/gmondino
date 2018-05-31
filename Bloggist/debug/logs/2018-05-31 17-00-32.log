@@ -1,0 +1,119 @@
+42.0 APEX_CODE,FINEST;APEX_PROFILING,INFO;CALLOUT,INFO;DB,INFO;SYSTEM,DEBUG;VALIDATION,INFO;VISUALFORCE,INFO;WAVE,INFO;WORKFLOW,INFO
+17:00:30.0 (301906)|USER_INFO|[EXTERNAL]|005f40000025hKK|devorg@training.alti|Argentine Time|GMT-03:00
+17:00:30.0 (336515)|EXECUTION_STARTED
+17:00:30.0 (340440)|CODE_UNIT_STARTED|[EXTERNAL]|Aura
+17:00:30.0 (3108678)|CODE_UNIT_STARTED|[EXTERNAL]|01pf400000GeI1Z|PostController.savePost
+17:00:30.0 (3320043)|HEAP_ALLOCATE|[72]|Bytes:3
+17:00:30.0 (3388175)|HEAP_ALLOCATE|[77]|Bytes:152
+17:00:30.0 (3402792)|HEAP_ALLOCATE|[342]|Bytes:408
+17:00:30.0 (3414597)|HEAP_ALLOCATE|[355]|Bytes:408
+17:00:30.0 (3425227)|HEAP_ALLOCATE|[467]|Bytes:48
+17:00:30.0 (3452675)|HEAP_ALLOCATE|[139]|Bytes:6
+17:00:30.0 (3468798)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:15
+17:00:30.0 (3534617)|METHOD_ENTRY|[1]|01pf400000GeI1Z|PostController.PostController()
+17:00:30.0 (3544885)|STATEMENT_EXECUTE|[1]
+17:00:30.0 (3550840)|STATEMENT_EXECUTE|[1]
+17:00:30.0 (3584868)|HEAP_ALLOCATE|[50]|Bytes:5
+17:00:30.0 (3609736)|HEAP_ALLOCATE|[56]|Bytes:5
+17:00:30.0 (3617994)|HEAP_ALLOCATE|[64]|Bytes:7
+17:00:30.0 (3641391)|SYSTEM_MODE_ENTER|false
+17:00:30.0 (3767242)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:5
+17:00:30.0 (3776853)|SYSTEM_MODE_EXIT|false
+17:00:30.0 (3796816)|METHOD_EXIT|[1]|PostController
+17:00:30.0 (3811240)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:20
+17:00:30.0 (3824019)|SYSTEM_MODE_ENTER|false
+17:00:30.0 (3834065)|VARIABLE_SCOPE_BEGIN|[3]|post|Post__c|true|false
+17:00:30.0 (3866062)|VARIABLE_ASSIGNMENT|[3]|post|{"Tag__c":"someTag","Status__c":"Draft","Content__c":"","Title__c":"test submit"}|0x2c32d232
+17:00:30.0 (3885478)|HEAP_ALLOCATE|[4]|Bytes:5
+17:00:30.0 (3890938)|STATEMENT_EXECUTE|[3]
+17:00:30.0 (3893572)|STATEMENT_EXECUTE|[4]
+17:00:30.0 (3935995)|HEAP_ALLOCATE|[4]|Bytes:8
+17:00:30.0 (3951271)|DML_BEGIN|[4]|Op:Upsert|Type:Post__c|Rows:1
+17:00:30.0 (3985804)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+17:00:30.0 (12375619)|CODE_UNIT_STARTED|[EXTERNAL]|01qf4000001MEZf|submitTrigger on Post trigger event BeforeInsert
+17:00:30.0 (12429327)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+17:00:30.0 (12528819)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+17:00:30.0 (12541671)|VARIABLE_SCOPE_BEGIN|[1]|this|submitTrigger|true|false
+17:00:30.0 (12637311)|VARIABLE_ASSIGNMENT|[1]|this|{}|0xf19d4c9
+17:00:30.0 (12717158)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+17:00:30.0 (12726304)|VARIABLE_SCOPE_BEGIN|[1]|this|submitTrigger|true|false
+17:00:30.0 (12740913)|VARIABLE_ASSIGNMENT|[1]|this|{}|0xf19d4c9
+17:00:30.0 (12749194)|STATEMENT_EXECUTE|[1]
+17:00:30.12 (12753882)|CUMULATIVE_LIMIT_USAGE
+17:00:30.12 (12753882)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:00:30.12 (12753882)|CUMULATIVE_LIMIT_USAGE_END
+
+17:00:30.0 (13927020)|CODE_UNIT_FINISHED|submitTrigger on Post trigger event BeforeInsert
+17:00:30.0 (17740779)|CODE_UNIT_STARTED|[EXTERNAL]|01qf4000001MAVW|statusDraftTrigger on Post trigger event BeforeInsert
+17:00:30.0 (17781508)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:8
+17:00:30.0 (17852437)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+17:00:30.0 (17863721)|VARIABLE_SCOPE_BEGIN|[1]|this|statusDraftTrigger|true|false
+17:00:30.0 (17898739)|VARIABLE_ASSIGNMENT|[1]|this|{}|0x29a64cb0
+17:00:30.0 (17950493)|HEAP_ALLOCATE|[EXTERNAL]|Bytes:4
+17:00:30.0 (17958289)|VARIABLE_SCOPE_BEGIN|[1]|this|statusDraftTrigger|true|false
+17:00:30.0 (17971529)|VARIABLE_ASSIGNMENT|[1]|this|{}|0x29a64cb0
+17:00:30.0 (17979348)|STATEMENT_EXECUTE|[1]
+17:00:30.0 (18287722)|HEAP_ALLOCATE|[2]|Bytes:5
+17:00:30.0 (18321091)|HEAP_ALLOCATE|[2]|Bytes:4
+17:00:30.0 (18332250)|VARIABLE_SCOPE_BEGIN|[2]|p|Post__c|true|false
+17:00:30.0 (18550071)|VARIABLE_ASSIGNMENT|[2]|p|{"IsDeleted":false,"OwnerId":"005f40000025hKKAAY","Tag__c":"someTag","Status__c":"Draft","Title__c":"test submit"}|0x648d0ff5
+17:00:30.0 (18560703)|STATEMENT_EXECUTE|[2]
+17:00:30.0 (18562705)|STATEMENT_EXECUTE|[3]
+17:00:30.0 (18568680)|HEAP_ALLOCATE|[3]|Bytes:5
+17:00:30.0 (18678490)|VARIABLE_ASSIGNMENT|[3]|this.Status__c|"Draft"|0x648d0ff5
+17:00:30.0 (18698551)|HEAP_ALLOCATE|[2]|Bytes:5
+17:00:30.0 (18712738)|VARIABLE_ASSIGNMENT|[2]|p|null|
+17:00:30.18 (18723204)|CUMULATIVE_LIMIT_USAGE
+17:00:30.18 (18723204)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:00:30.18 (18723204)|CUMULATIVE_LIMIT_USAGE_END
+
+17:00:30.0 (19540125)|CODE_UNIT_FINISHED|statusDraftTrigger on Post trigger event BeforeInsert
+17:00:30.0 (41314671)|DML_END|[4]
+17:00:30.0 (41344323)|STATEMENT_EXECUTE|[5]
+17:00:30.0 (41357421)|SYSTEM_MODE_EXIT|false
+17:00:30.44 (44665326)|CUMULATIVE_LIMIT_USAGE
+17:00:30.44 (44665326)|LIMIT_USAGE_FOR_NS|(default)|
+  Number of SOQL queries: 0 out of 100
+  Number of query rows: 0 out of 50000
+  Number of SOSL queries: 0 out of 20
+  Number of DML statements: 1 out of 150
+  Number of DML rows: 1 out of 10000
+  Maximum CPU time: 0 out of 10000
+  Maximum heap size: 0 out of 6000000
+  Number of callouts: 0 out of 100
+  Number of Email Invocations: 0 out of 10
+  Number of future calls: 0 out of 50
+  Number of queueable jobs added to the queue: 0 out of 50
+  Number of Mobile Apex push calls: 0 out of 10
+
+17:00:30.44 (44665326)|CUMULATIVE_LIMIT_USAGE_END
+
+17:00:30.0 (44712836)|CODE_UNIT_FINISHED|PostController.savePost
+17:00:30.0 (44787571)|CODE_UNIT_FINISHED|Aura
+17:00:30.0 (45704745)|EXECUTION_FINISHED

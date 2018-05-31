@@ -1,14 +1,16 @@
-<aura:component controller="PostController">
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="PostController">
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:handler event="c:createPostEvent" action="{!c.handleCreation}" />
-    <aura:handler name="discardPost" event="c:discardPostEvent" action="{!c.handleDiscard}" />
+    <aura:handler name="discardPostEvent" event="c:discardPostEvent" action="{!c.handleDiscard}" />
+    <aura:handler name="submitPostEvent" event="c:submitPostEvent" action="{!c.handleSubmit}" />
     <aura:attribute name="appPost" type="Post__c[]"/>
     <aura:attribute name="subPost" type="Post__c[]"/>
     <aura:attribute name="draftPost" type="Post__c[]"/>
-	<lightning:card title="Submitted for approval">
+	<div class="slds-box slds-theme_default">
+    <lightning:card title="Submitted for approval">
         <p class="slds-p-horizontal--small">
             <aura:iteration items="{!v.subPost}" var="post">
-                <c:SinglePost post="{!post}" typeSource="Submitted for approval"/>
+                <c:SinglePost post="{!post}" transferButton="Approve"/>
             </aura:iteration>
         </p>
     </lightning:card>
@@ -17,7 +19,7 @@
     <lightning:card title="Ready for publishing">
         <p class="slds-p-horizontal--small">
             <aura:iteration items="{!v.appPost}" var="post">
-                <c:SinglePost post="{!post}" typeSource="Ready for publishing"/>
+                <c:SinglePost post="{!post}" transferButton="Publish"/>
             </aura:iteration>
         </p>
     </lightning:card>
@@ -26,8 +28,9 @@
     <lightning:card title="Draft">
         <p class="slds-p-horizontal--small">
             <aura:iteration items="{!v.draftPost}" var="post">
-                <c:SinglePost post="{!post}" typeSource="Draft"/>
+                <c:SinglePost post="{!post}" transferButton="Submit for approval"/>
             </aura:iteration>
         </p>
     </lightning:card>
+    </div>
 </aura:component>

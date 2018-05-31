@@ -55,6 +55,18 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
+        <fullName>Author__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Author</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Posts</relationshipLabel>
+        <relationshipName>Posts</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Content__c</fullName>
         <externalId>false</externalId>
         <label>Content</label>

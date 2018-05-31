@@ -47,22 +47,33 @@
     handleDiscard : function(component, event, helper){
         var postStatus = event.getParam("postStatus");
         var list;
+        var post = event.getParam("post");
         switch(postStatus) {
-            case 'Submitted for approval':
+            case 'Approve':
                 list = component.get("v.subPost");
-                list.push(event.getParam("post"));
+                list.splice(list.indexOf(post),1);
                 component.set("v.subPost",list);
                 break;
-            case 'Ready for publishing':
+            case 'Publish':
                 list = component.get("v.appPost");
-                list.push(event.getParam("post"));
+                list.splice(list.indexOf(post),1);
                 component.set("v.appPost",list);
                 break;
-            case 'Draft':
+            case 'Submit for approval':
                 list = component.get("v.draftPost");
-                list.push(event.getParam("post"));
+                list.splice(list.indexOf(post),1);
                 component.set("v.draftPost",list);
                 break;
         }
+    },
+    
+    handleSubmit : function(component, event, helper){
+        var post = event.getParam("post");
+        var list = component.get("v.draftPost");
+        list.splice(list.indexOf(post),1);
+        component.set("v.draftPost",list);
+        list = component.get("v.subPost");
+        list.push(post);
+        component.set("v.subPost",list);
     }
 })

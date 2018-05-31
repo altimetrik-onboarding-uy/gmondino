@@ -1,4 +1,4 @@
-<aura:component controller="PostController">
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="PostController">
     <aura:registerEvent name="createPost" type="c:createPostEvent"/>
 	<aura:attribute name="newPost" type="Post__c"
                     default="{ 'sobjectType': 'Post__c',
@@ -7,9 +7,9 @@
                         'Tag__c': '',
                         'Content__c': ''}"/>
     
-    <lightning:layout >
-        <lightning:layoutItem padding="around-small" size="6">
-        <form class="slds-form--stacked">          
+    
+        <div class="slds-box slds-theme_default">
+		<form class="slds-form--stacked">          
             <lightning:input aura:id="postform" label="Title"
                              name="posttitle"
                              value="{!v.newPost.Title__c}"/> 
@@ -30,7 +30,8 @@
                               variant="brand"
                               onclick="{!c.clickSubmit}"/>
         </form>
-        </lightning:layoutItem>
-    </lightning:layout>
+        </div>
+  		
+        
     
 </aura:component>

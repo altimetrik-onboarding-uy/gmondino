@@ -33,4 +33,16 @@ public with sharing class PostController {
     public static void discardPost(Post__c post) {
         delete post;
     }
+    
+    @AuraEnabled
+    public static void changePostStatus(Post__c post) {
+        if (post.Status__c == 'Draft') {
+            post.Status__c = 'Under Review';
+        } else if (post.Status__c == 'Under Review') {
+            post.Status__c = 'Ready';
+        } else if (post.Status__c == 'Ready') {
+            post.Status__c = 'Published';
+        }
+        update post;
+    }
 }
