@@ -6,6 +6,7 @@
                         'Status__c': 'Draft',
                         'Tag__c': '',
                         'Content__c': ''}"/>
+    <aura:attribute name="authorName" type="String" />
     
     
         <div class="slds-box slds-theme_default">
@@ -21,6 +22,10 @@
             <lightning:input aura:id="postform" label="Tags"
                              name="posttags"      
                              value="{!v.newPost.Tag__c}"/>
+            <lightning:input aura:id="postform" label="Pseudonym"
+                             name="postAuthor"      
+                             value="{!v.authorName}"
+                             required="true"/>
             <lightning:button label="Create Post" 
                               class="slds-m-top--medium"
                               variant="brand"

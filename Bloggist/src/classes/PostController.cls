@@ -1,7 +1,17 @@
 public with sharing class PostController {
     @AuraEnabled
-    public static Post__c savePost (Post__c post){
-        upsert post;
+    public static Post__c savePost (Post__c post, String AuthorName){
+        List<Contact> contacts = [SELECT id, lastName 
+                                  FROM Contact 
+                                  WHERE LastName = :authorName 
+                                  AND OwnerId = :UserInfo.getUserId()];
+        Contact auth = new Contact(LastName = authorName, OwnerId = UserInfo.getUserId());
+        if(contacts.size() != 0) {
+            auth = contacts[0];
+        }
+        insert auth;
+        post.Author__c = auth.Id;
+        insert post;
         return post;
     }
     @AuraEnabled
@@ -44,5 +54,30 @@ public with sharing class PostController {
             post.Status__c = 'Published';
         }
         update post;
+    }
+    
+/*     @AuraEnabled
+   public static Contact getAuthor(String authorName) {
+        List<Contact> contacts = [SELECT id, lastName 
+                                  FROM Contact 
+                                  WHERE LastName = :authorName 
+                                  AND OwnerId = :UserInfo.getUserId()];
+        Contact ret = Null;
+        if(contacts.size() != 0) {
+            ret = contacts[0];
+        } else {
+            ret = new Contact(LastName = authorName, OwnerId = UserInfo.getUserId());
+            insert ret;
+        }
+        return ret;
+    } */
+    
+    @AuraEnabled
+    public static Boolean authorExist(String authorName) {
+        Integer exist = [SELECT count() 
+                         FROM Contact 
+                         WHERE LastName = :authorName 
+                         AND OwnerId = :UserInfo.getUserId()]; 
+        return (exist >= 1);
     }
 }

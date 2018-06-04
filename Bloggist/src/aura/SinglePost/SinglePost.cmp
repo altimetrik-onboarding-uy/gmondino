@@ -9,7 +9,7 @@
                         'Content__c': 'Default content'}"/>
     <aura:attribute name="transferButton" type="String"/>
     
-    <lightning:card footer="Authors name">
+    <lightning:card footer="{!v.post.Author__c.LastName}">
         <aura:set attribute="title">
             <lightning:formattedText value="{!v.post.Title__c}"></lightning:formattedText>
         </aura:set>
