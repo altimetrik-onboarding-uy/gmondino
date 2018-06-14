@@ -1,6 +1,7 @@
 <aura:component controller="PostController">
     <aura:registerEvent name="discardPostEvent" type="c:discardPostEvent"/>
     <aura:registerEvent name="submitPostEvent" type="c:submitPostEvent"/>
+    <aura:registerEvent name="publishPostEvent" type="c:publishPostEvent"/>
 	<aura:attribute name="post" type="Post__c" required="true" 
                     default="{ 'sobjectType': 'Post__c',
                         'Title__c': 'default',
@@ -8,17 +9,26 @@
                         'Tag__c': 'tag1,tag2',
                         'Content__c': 'Default content'}"/>
     <aura:attribute name="transferButton" type="String"/>
+    <aura:attribute name="boolean" type="boolean" default="false" />
+    <aura:attribute name="pub" type="boolean" default="false" />
     
     <lightning:card footer="{!v.post.Author__c.LastName}">
         <aura:set attribute="title">
             <lightning:formattedText value="{!v.post.Title__c}"></lightning:formattedText>
         </aura:set>
         <aura:set attribute="actions">
-            <lightning:button label="{!v.transferButton}" 
-                              onclick="{!c.changeStatus}"/>
-            <lightning:button label="Discard" 
+       	 <aura:if isTrue="{!v.boolean}">
+           	 <lightning:button label="{!v.transferButton}" 
+                              onclick="{!c.changeStatus}"/>  
+           	 <lightning:button label="Discard" 
                               onclick="{!c.discard}"
                               name="{!v.transferButton}"/>
+         </aura:if>	
+         <aura:if isTrue="{!v.pub}">
+           	 <lightning:button label="Delete" 
+                              onclick="{!c.deletePost}"
+                              name="{!v.transferButton}"/>
+         </aura:if>
         </aura:set>
         <lightning:formattedText value="{!v.post.Content__c}"></lightning:formattedText>
         <br></br>

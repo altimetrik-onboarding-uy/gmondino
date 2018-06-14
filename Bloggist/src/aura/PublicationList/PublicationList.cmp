@@ -3,10 +3,21 @@
     <aura:handler event="c:createPostEvent" action="{!c.handleCreation}" />
     <aura:handler name="discardPostEvent" event="c:discardPostEvent" action="{!c.handleDiscard}" />
     <aura:handler name="submitPostEvent" event="c:submitPostEvent" action="{!c.handleSubmit}" />
+    <aura:handler name="publishPostEvent" event="c:publishPostEvent" action="{!c.handlePublish}" />
     <aura:attribute name="appPost" type="Post__c[]"/>
     <aura:attribute name="subPost" type="Post__c[]"/>
     <aura:attribute name="draftPost" type="Post__c[]"/>
+    <aura:attribute name="publishedPost" type="Post__c[]"/>
 	<div class="slds-box slds-theme_default">
+    <lightning:card title="Draft">
+        <p class="slds-p-horizontal--small">
+            <aura:iteration items="{!v.draftPost}" var="post">
+                <c:SinglePost post="{!post}" transferButton="Submit for approval" boolean="true"/>
+            </aura:iteration>
+        </p>
+    </lightning:card>
+    <br></br>
+    <br></br>
     <lightning:card title="Submitted for approval">
         <p class="slds-p-horizontal--small">
             <aura:iteration items="{!v.subPost}" var="post">
@@ -19,16 +30,16 @@
     <lightning:card title="Ready for publishing">
         <p class="slds-p-horizontal--small">
             <aura:iteration items="{!v.appPost}" var="post">
-                <c:SinglePost post="{!post}" transferButton="Publish"/>
+                <c:SinglePost post="{!post}" transferButton="Publish" boolean="true"/>
             </aura:iteration>
         </p>
     </lightning:card>
     <br></br>
     <br></br>
-    <lightning:card title="Draft">
+    <lightning:card title="Published posts">
         <p class="slds-p-horizontal--small">
-            <aura:iteration items="{!v.draftPost}" var="post">
-                <c:SinglePost post="{!post}" transferButton="Submit for approval"/>
+            <aura:iteration items="{!v.publishedPost}" var="post">
+                <c:SinglePost post="{!post}" transferButton="AlreadyPublished" pub="true"/>
             </aura:iteration>
         </p>
     </lightning:card>

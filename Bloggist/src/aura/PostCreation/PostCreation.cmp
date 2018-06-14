@@ -1,42 +1,31 @@
 <aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="PostController">
-    <aura:registerEvent name="createPost" type="c:createPostEvent"/>
+  <aura:registerEvent name="createPost" type="c:createPostEvent"/>
 	<aura:attribute name="newPost" type="Post__c"
                     default="{ 'sobjectType': 'Post__c',
                         'Title__c': '',
-                        'Status__c': 'Draft',
+                        'Status__c': '',
                         'Tag__c': '',
                         'Content__c': ''}"/>
-    <aura:attribute name="authorName" type="String" />
-    
-    
-        <div class="slds-box slds-theme_default">
-		<form class="slds-form--stacked">          
+    <aura:attribute name="selectedLookUpRecord" type="sObject" default="{}" />
+
+    <div class="slds-box slds-theme_default">
+		<form class="slds-form--stacked">
             <lightning:input aura:id="postform" label="Title"
                              name="posttitle"
-                             value="{!v.newPost.Title__c}"/> 
+                             value="{!v.newPost.Title__c}"/>
         	<label class="slds-form-element__label" for="contentTextArea">Content</label>
-        	<textarea aura:id="postTextArea" class="slds-textarea" 
+        	<textarea aura:id="postTextArea" class="slds-textarea"
                       id="contentTextArea"
-                      placeholder="Write your post here!" 
+                      placeholder="Write your post here!"
                       value="{!v.newPost.Content__c}" />
             <lightning:input aura:id="postform" label="Tags"
-                             name="posttags"      
+                             name="posttags"
                              value="{!v.newPost.Tag__c}"/>
-            <lightning:input aura:id="postform" label="Pseudonym"
-                             name="postAuthor"      
-                             value="{!v.authorName}"
-                             required="true"/>
-            <lightning:button label="Create Post" 
+            <c:customLookup objectAPIName="contact" IconName="standard:contact" label="Author Name" selectedRecord="{!v.selectedLookUpRecord}" />
+            <lightning:button label="Create Post"
                               class="slds-m-top--medium"
                               variant="brand"
                               onclick="{!c.clickCreatePost}"/>
-        	<lightning:button label="Submit for approval" 
-                              class="slds-m-top--medium"
-                              variant="brand"
-                              onclick="{!c.clickSubmit}"/>
         </form>
-        </div>
-  		
-        
-    
+        </div>    
 </aura:component>
