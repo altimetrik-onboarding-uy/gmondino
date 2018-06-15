@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+	<c:PostCreation ></c:PostCreation>
+    <br></br>
+    <br></br>
+    <c:PublicationList ></c:PublicationList>
+</aura:component>

@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT">
+    <aura:attribute name="post" type="Post__c" />
+    <aura:attribute name="postStatus" type="String" />
+</aura:event>
