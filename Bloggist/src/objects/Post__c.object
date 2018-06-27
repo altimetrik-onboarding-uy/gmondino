@@ -81,10 +81,9 @@
         <fullName>Content__c</fullName>
         <externalId>false</externalId>
         <label>Content</label>
-        <length>32768</length>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>LongTextArea</type>
-        <visibleLines>3</visibleLines>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Published_Date__c</fullName>
@@ -160,7 +159,7 @@
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>creatorEditor</fullName>
-        <active>false</active>
+        <active>true</active>
         <errorConditionFormula>AND( NOT(ISBLANK(Id) ) ,
      $User.Id  &lt;&gt;  CreatedById)</errorConditionFormula>
         <errorMessage>Only the creator can edit the record</errorMessage>
@@ -169,7 +168,8 @@
         <fullName>statusChange</fullName>
         <active>true</active>
         <errorConditionFormula>AND(ISPICKVAL( Status__c , &quot;Ready&quot;),
-    NOT(ISPICKVAL(PRIORVALUE(Status__c), &quot;Under Review&quot;)))</errorConditionFormula>
+    NOT( OR(ISPICKVAL(PRIORVALUE(Status__c), &quot;Under Review&quot;),
+             ISPICKVAL(PRIORVALUE(Status__c), &quot;Ready&quot;))))</errorConditionFormula>
         <errorMessage>Status can only be set to ready by a manager</errorMessage>
     </validationRules>
 </CustomObject>

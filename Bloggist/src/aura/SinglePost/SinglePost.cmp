@@ -1,23 +1,45 @@
 <aura:component controller="PostController">
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     <aura:registerEvent name="discardPostEvent" type="c:discardPostEvent"/>
     <aura:registerEvent name="submitPostEvent" type="c:submitPostEvent"/>
     <aura:registerEvent name="publishPostEvent" type="c:publishPostEvent"/>
+    <aura:registerEvent name="editPostEvent" type="c:editPostEvent"/>
 	<aura:attribute name="post" type="Post__c" required="true" 
                     default="{ 'sobjectType': 'Post__c',
                         'Title__c': 'default',
                         'Status__c': 'Draft',
                         'Tag__c': 'tag1,tag2',
-                        'Content__c': 'Default content'}"/>
+                        'Content__c': 'Default content',
+                        'Published_Date__c': ''}"/>
     <aura:attribute name="transferButton" type="String"/>
     <aura:attribute name="boolean" type="boolean" default="false" />
     <aura:attribute name="pub" type="boolean" default="false" />
+    <aura:attribute name="textAreaValue" type="String" default="Default text"/>
+    <ltng:require scripts="/resource/markedlib/marked.js" afterScriptsLoaded="{!c.jsLoaded}"></ltng:require>
     
-    <lightning:card footer="{!v.post.Author__c.LastName}">
+    <div class="slds-border_top slds-border_bottom slds-border_left slds-border_right">
+    <lightning:card class="slds-border_top" footer="{!v.post.Author__c.Name}">
         <aura:set attribute="title">
             <lightning:formattedText value="{!v.post.Title__c}"></lightning:formattedText>
         </aura:set>
+        <br></br>
+        <br></br>      
+        <aura:unescapedHtml value="{!v.textAreaValue}"/>
+   <!--     <lightning:formattedText value="{!v.post.Content__c}"></lightning:formattedText>  -->
+        <br></br>
+        <br></br>
+        <p>Tags: <lightning:formattedText value="{!v.post.Tag__c}"></lightning:formattedText>
+    	</p>
+        <aura:if isTrue="{!v.pub}">
+        <br></br>
+        <br></br>
+        <p>Date: <ui:outputDateTime value="{!v.post.Published_Date__c}" format="MMM dd, yyyy hh:mm a z"/>
+    	</p>
+        </aura:if>
         <aura:set attribute="actions">
        	 <aura:if isTrue="{!v.boolean}">
+             <lightning:button label="Edit" 
+                              onclick="{!c.editPost}"/>
            	 <lightning:button label="{!v.transferButton}" 
                               onclick="{!c.changeStatus}"/>  
            	 <lightning:button label="Discard" 
@@ -25,15 +47,13 @@
                               name="{!v.transferButton}"/>
          </aura:if>	
          <aura:if isTrue="{!v.pub}">
+             <lightning:button label="Edit" 
+                              onclick="{!c.editPost}"/>
            	 <lightning:button label="Delete" 
                               onclick="{!c.deletePost}"
                               name="{!v.transferButton}"/>
          </aura:if>
         </aura:set>
-        <lightning:formattedText value="{!v.post.Content__c}"></lightning:formattedText>
-        <br></br>
-        <br></br>
-        <p>Tags: <lightning:formattedText value="{!v.post.Tag__c}"></lightning:formattedText>
-    	</p>
     </lightning:card>
+    </div>
 </aura:component>

@@ -1,0 +1,57 @@
+<aura:component controller="PostController"  implements="flexipage:availableForAllPageTypes" access="global">
+  <aura:handler event="c:editPostEvent" action="{!c.handleEdit}" />
+  <aura:registerEvent name="submitPostEvent" type="c:submitPostEvent"/>
+  <aura:registerEvent name="publishPostEvent" type="c:publishPostEvent"/>
+  <aura:registerEvent name="editPostActEvent" type="c:editPostActEvent"/>
+  <aura:attribute name="isOpen" type="boolean" default="false"/>
+  <aura:attribute name="isDraft" type="boolean" default="false"/>
+  <aura:attribute name="isReady" type="boolean" default="false"/>
+  <aura:attribute name="setIntervalId" type="Integer"/>
+  <aura:attribute name="textAreaValue" type="String" default="Default text"/>
+  <aura:attribute name="Post" type="Post__c"
+                    default="{ 'sobjectType': 'Post__c',
+                        'Title__c': '',
+                        'Status__c': '',
+                        'Tag__c': '',
+                        'Content__c': ''}"/>
+ <ltng:require scripts="/resource/markedlib/marked.js" afterScriptsLoaded="{!c.jsLoaded}"></ltng:require> 
+    
+  <div class="slds-m-around--xx-large">  
+    <aura:if isTrue="{!v.isOpen}">
+
+      <div role="dialog" tabindex="-1" aria-labelledby="header99" class="slds-modal slds-fade-in-open ">
+        <div class="slds-modal__container slds-modal--large">
+          <div class="slds-modal__header">
+            <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModel}">
+            X
+            <span class="slds-assistive-text">Close</span>
+            </button>
+              <c:progression statusValue="{!v.post.Status__c}" />
+          </div>
+          
+          <div class="slds-modal__content slds-p-around--large">
+              <ui:inputTextArea aura:id="textarea" 
+                                value="{!v.Post.Content__c}" 
+                                label="Type something" 
+        						updateOn="keyup" keyup="{!c.handleKeyup}" />
+  		      <br></br>
+              <p>Preview:</p>
+              <br></br>
+  			 <aura:unescapedHtml value="{!v.textAreaValue}"/> 
+          </div>
+          
+          <div class="slds-modal__footer">
+            <button class="slds-button slds-button--neutral" onclick="{!c.closeModel}" >Close</button>
+            <aura:if isTrue="{!v.isDraft}">
+            	<button class="slds-button slds-button--brand" onclick="{!c.submitForAppHand}">Submit for approval</button>
+            </aura:if>
+            <aura:if isTrue="{!v.isReady}">
+                <button class="slds-button slds-button--brand" onclick="{!c.publishPostHand}">Publish</button>
+            </aura:if> 
+         </div>
+        </div>
+      </div>
+      <div class="slds-backdrop slds-backdrop--open"></div>    
+ </aura:if>
+  </div>
+</aura:component>

@@ -17,7 +17,21 @@
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>*</members>
+        <members>PostCreation</members>
+        <members>PublicationList</members>
+        <members>SinglePost</members>
+        <members>Writers</members>
+        <members>createPostEvent</members>
+        <members>customLookup</members>
+        <members>customLookupResult</members>
+        <members>discardPostEvent</members>
+        <members>editPostActEvent</members>
+        <members>editPostEvent</members>
+        <members>modal</members>
+        <members>progression</members>
+        <members>publishPostEvent</members>
+        <members>selectedsObjectRecordEvent</members>
+        <members>submitPostEvent</members>
         <name>AuraDefinitionBundle</name>
     </types>
     <types>

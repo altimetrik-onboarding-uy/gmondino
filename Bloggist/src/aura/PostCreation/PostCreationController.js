@@ -2,6 +2,7 @@
 	clickCreatePost : function(component, event, helper) {
         var postObj = component.get("v.newPost");
         postObj.Author__c = null;
+        postObj.Content__c = component.get("v.textAreaValue");
         
         if(component.get("v.selectedLookUpRecord").Id != undefined) {
             postObj.Author__c = component.get("v.selectedLookUpRecord").Id;

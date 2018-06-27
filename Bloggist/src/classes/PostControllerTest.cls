@@ -64,7 +64,8 @@ public class PostControllerTest {
         Test.startTest();
         system.runAs(dave){
        	 Post__c dr = new Post__c (Title__c='titledr',Status__c='Draft',Tag__c='tagd');
-         insert dr;              
+         insert dr;
+         PostController.saveMod(dr);
          PostController.submitPost(dr);
         }
        system.runAs(manager){
@@ -92,11 +93,13 @@ public class PostControllerTest {
             List<Post__c> pub = PostController.getPublishedPosts();
          Test.stopTest();
      }
-          List<Post__c> published = [SELECT Id, Status__c, Title__c, Tag__c
+          List<Post__c> published = [SELECT Id, Status__c, Title__c, Tag__c,Published_Date__c
                 				   FROM Post__c
                 				   WHERE Status__c = 'Published'
                 				   AND OwnerId = :dave.id];
-         System.assertEquals(1,published.size());
+         Post__c chiv = published[0];
+         boolean chib = chiv.Published_Date__c != null;
+         System.assertEquals(true,(published.size()==1)&&chib);
       
     }    
     

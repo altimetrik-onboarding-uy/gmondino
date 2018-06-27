@@ -1,0 +1,57 @@
+<aura:component >
+    <aura:handler name="change" value="{!v.numItems}" action="{!c.itemsChange}"/>
+    <aura:attribute name="statusValue" type="String" default="--"></aura:attribute>
+	<div class="slds-path">
+	  <div class="slds-grid slds-path__track">
+	    <div class="slds-grid slds-path__scroller-container">
+		  <div class="slds-path__scroller" role="application">
+		    <div class="slds-path__scroller_inner">
+	          <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                <li class="slds-path__item slds-is-current slds-is-active" aura:id="draftLi" role="presentation">
+                 <a aria-selected="{!v.draftValue}" class="slds-path__link" href="javascript:void(0);" id="path-1" role="option" tabindex="0">
+                    <span class="slds-path__stage">
+                      <span class="slds-assistive-text">Stage Complete</span>
+                    </span>
+                      <span class="slds-path__title">Draft</span>
+                  </a>
+                </li> 
+                <li class="slds-path__item slds-is-incomplete" role="presentation">
+                  <a aria-selected="{!v.underValue}" class="slds-path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="-1">
+                    <span class="slds-path__stage">
+                      <span class="slds-assistive-text">Current Stage:</span>
+                    </span>
+                      <span class="slds-path__title">Under review</span>
+                  </a>
+                </li>
+                <li class="slds-path__item slds-is-incomplete" aura:id="readyLi" role="presentation">
+                  <a aria-selected="{!v.readyValue}" class="slds-path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="-1">
+                    <span class="slds-path__stage">
+                      <span class="slds-assistive-text">Current Stage:</span>
+                    </span>
+                      <span class="slds-path__title">Ready</span>
+                  </a>
+                </li>
+                <li class="slds-path__item slds-is-incomplete" aura:id="publishLi" role="presentation">
+                  <a aria-selected="{!v.publishedValue}" class="slds-path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="-1">
+                    <span class="slds-path__stage">
+                      <span class="slds-assistive-text">Current Stage:</span>
+                    </span>
+                      <span class="slds-path__title">Published</span>
+                  </a>
+                </li>
+              </ul>
+            <div class="slds-path__scroll-controls">
+              <button class="slds-button slds-button_icon slds-button_icon-border-filled" title="Scroll left" tabindex="-1">
+                <span class="slds-assistive-text">Scroll left</span>
+              </button>
+              <button class="slds-button slds-button_icon slds-button_icon-border-filled" title="Scroll right" tabindex="-1">
+                <span class="slds-assistive-text">Scroll right</span>
+              </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>	
+</aura:component>

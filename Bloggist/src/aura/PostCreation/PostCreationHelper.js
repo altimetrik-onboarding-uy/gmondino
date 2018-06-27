@@ -13,6 +13,7 @@
                	   	  'Status__c': 'Draft',
                	   	  'Tag__c': '',
                	   	  'Content__c': ''})
+                component.set("v.textAreaValue",'Write your post here...');
             } else if (state === 'ERROR'){
                 var errors = response.getError();
                 for(var i=0; i<= errors.length; i++){

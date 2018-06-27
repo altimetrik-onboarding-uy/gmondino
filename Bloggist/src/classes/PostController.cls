@@ -6,28 +6,28 @@ public with sharing class PostController {
     }
     @AuraEnabled
     public static List<Post__c> getAppPosts() {
-        return [SELECT Id, Name, Title__c, Content__c, Tag__c
+        return [SELECT Id, Name, Title__c, Content__c, Tag__c, Status__c
                 FROM Post__c
                 WHERE Status__c = 'Ready'
                 AND OwnerId = :UserInfo.getUserId()];
     }
     @AuraEnabled
     public static List<Post__c> getSubPosts() {
-        return [SELECT Id, Name, Title__c, Content__c, Tag__c
+        return [SELECT Id, Name, Title__c, Content__c, Tag__c, Status__c
                 FROM Post__c
                 WHERE Status__c = 'Under Review'
                 AND OwnerId = :UserInfo.getUserId()];
     }
     @AuraEnabled
     public static List<Post__c> getDraftPosts() {
-        return [SELECT Id, Name, Title__c, Content__c, Tag__c
+        return [SELECT Id, Name, Title__c, Content__c, Tag__c, Status__c
                 FROM Post__c
                 WHERE Status__c = 'Draft'
                 AND OwnerId = :UserInfo.getUserId()];
     }
     @AuraEnabled
     public static List<Post__c> getPublishedPosts() {
-        return [SELECT Id, Name, Title__c, Content__c, Tag__c
+        return [SELECT Id, Name, Title__c, Content__c, Tag__c, Status__c,Published_Date__c
                 FROM Post__c
                 WHERE Status__c = 'Published'
                 AND OwnerId = :UserInfo.getUserId()];
@@ -54,4 +54,21 @@ public with sharing class PostController {
         update post;
         return post;
     }
+    @AuraEnabled
+    public static void saveMod(Post__c post) {
+        update post;
+    }
+/*    @AuraEnabled
+    public static Datetime actualDate() {
+       return Date.today();
+    }
+/*    @AuraEnabled
+    public static Post__c postStatValue2(Post__c post) {
+        List<Post__c> fetchedPosts = [SELECT Id, Name, Title__c, Content__c, Tag__c, Status__c
+                		FROM Post__c
+                		WHERE Id = :post.id
+                		AND OwnerId = :UserInfo.getUserId()];
+        Post__c fetchedPost = fetchedPosts[0];
+        return fetchedPost;
+    } */
 }

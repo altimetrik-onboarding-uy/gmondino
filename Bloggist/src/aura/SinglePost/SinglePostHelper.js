@@ -74,5 +74,12 @@
         	});
            	$A.enqueueAction(actionPublish);
         }
-    }
+    },
+    edit : function(component, post, source) {
+        var editEvent = $A.get("e.c:editPostEvent");
+		//var editEvent = component.getEvent("editPostEvent");
+        editEvent.setParam("post", post);
+        editEvent.fire();
+	}
+    
 })

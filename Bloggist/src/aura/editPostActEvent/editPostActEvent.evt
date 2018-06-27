@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT">
+	<aura:attribute name="post" type="Post__c"/>
+</aura:event>

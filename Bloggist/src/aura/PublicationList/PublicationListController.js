@@ -66,12 +66,21 @@
         list.push(post);
         component.set("v.subPost",list);
     },
-    
     handlePublish : function(component, event, helper){
         var post = event.getParam("post");
         helper.updateList(component,'Publish',post);
         var list = component.get("v.publishedPost");
+        post.Status__c = 'Published';
         list.push(post);
         component.set("v.publishedPost",list);
+    },
+    handleEditUpdate : function(component, event, helper){
+        var post = event.getParam("post");
+        console.log(post.Status__c);
+        console.log(post.Content__c);
+        console.log("pre helper");
+        helper.updatePostContent(component,post.Status__c,post);
+        console.log("event actualization handled");
+        console.log(post.Content__c);
     }
 })
