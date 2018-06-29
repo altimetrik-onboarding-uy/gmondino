@@ -6,6 +6,7 @@
   <aura:attribute name="isOpen" type="boolean" default="false"/>
   <aura:attribute name="isDraft" type="boolean" default="false"/>
   <aura:attribute name="isReady" type="boolean" default="false"/>
+  <aura:attribute name="isPublished" type="boolean" default="false"/>
   <aura:attribute name="setIntervalId" type="Integer"/>
   <aura:attribute name="textAreaValue" type="String" default="Default text"/>
   <aura:attribute name="Post" type="Post__c"
@@ -26,7 +27,7 @@
             X
             <span class="slds-assistive-text">Close</span>
             </button>
-              <c:progression statusValue="{!v.post.Status__c}" />
+              <c:progression isDraftP="{!v.isDraft}" isReadyP="{!v.isReady}" isPublishedP="{!v.isPublished}"/>
           </div>
           
           <div class="slds-modal__content slds-p-around--large">

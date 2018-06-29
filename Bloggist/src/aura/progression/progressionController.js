@@ -1,5 +1,5 @@
 ({
-	itemsChange: function(component, event) {
+/*	itemsChange: function(component, event) {
        var status = component.get("v.statusValue");
        var liDraft = component.find("draftLi");
        var liReady = component.find("readyLi");
@@ -36,5 +36,5 @@
           $A.util.addClass(liReady, 'slds-is-incomplete');
         }          
     }
-    
+*/    
 })

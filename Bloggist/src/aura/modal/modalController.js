@@ -10,7 +10,7 @@
 //       console.log(post.Status__c == 'Under Review');
       component.set("v.isReady", post.Status__c == 'Ready');
 //       console.log(post.Status__c == 'Ready');
-//      component.set("v.isPublished", post.Status__c == 'Published');
+      component.set("v.isPublished", post.Status__c == 'Published');
 //       console.log(post.Status__c == 'Published'); */
        
       var interval = window.setInterval(
