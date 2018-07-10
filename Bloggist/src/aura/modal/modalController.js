@@ -1,7 +1,10 @@
 ({
    handleEdit : function(component, event, helper) {
       var post = event.getParam("post");
-       console.log(post.Status__c);
+//      console.log(post.Status__c);
+//      console.log("value Compares");
+//      console.log(post.Content__c);
+//      console.log(component.get("v.Post").Content__c);
       component.set("v.Post", post);
       component.set("v.textAreaValue",marked(post.Content__c));
       component.set("v.isDraft", post.Status__c == 'Draft');
@@ -22,7 +25,8 @@
       
    },
  
-   closeModel : function(component, event, helper) {       
+   closeModel : function(component, event, helper) {
+     console.log("Close pressed");       
      window.clearInterval(component.get("v.setIntervalId"));
       var updatePost = component.getEvent("editPostActEvent");
       var post = component.get("v.Post");
@@ -30,6 +34,7 @@
       updatePost.fire();
       console.log("event actualization fired");
       console.log(post.Content__c);
+      helper.setSaver(component,event, post);
       component.set("v.isOpen", false);
       component.set("v.post", { 'sobjectType': 'Post__c',
                	   	  'Title__c': '',
@@ -119,8 +124,35 @@
   		}
 		});
     },
-    handleKeyup : function(cmp, event) {
-        var elem = event.getSource().get('v.value');
-        cmp.set("v.textAreaValue",marked(elem));
+    handleKeyup : function(cmp, event, helper) {
+    //    var elem = event.getSource().get('v.value');
+    //    cmp.set("v.textAreaValue",marked(elem));
+          var cont = event.target.value;
+          var initLocation = event.target.selectionStart;
+          var finalLocation = event.target.selectionEnd;
+          console.log("shift pressed" + event.shiftKey);
+          if(event.ctrlKey && event.key == 'b'){
+              var cont = helper.construct(cmp,cont,initLocation,finalLocation,"****");
+          } else if (event.ctrlKey && event.key == 'i') {
+              var cont = helper.construct(cmp,cont,initLocation,finalLocation,"**");
+          } else if (event.ctrlKey && event.key.toLowerCase() == 'l') {
+              console.log(event.shiftKey);
+              if (event.shiftKey){
+               var cont = helper.construct(cmp,cont,initLocation,finalLocation,"``````");              
+              } else {
+               var cont = helper.construct(cmp,cont,initLocation,finalLocation,"``");   
+              }
+          }
+          cmp.set("v.textAreaValue",marked(cont));
+          var updt = cmp.get("v.Post");
+          updt.Content__c = cont;
+          cmp.set("v.Post",updt);
+    },
+    handleKeyDown : function(cmp, event) {
+        if((event.ctrlKey && event.key == 'l')||(event.ctrlKey && event.key == 'b') ||
+           (event.ctrlKey && event.key == 'i')||(event.ctrlKey && event.shiftKey && event.key == 'L')){
+          event.preventDefault();
+          console.log("prevented");  
+        }
     }
 })

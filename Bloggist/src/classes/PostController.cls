@@ -1,6 +1,8 @@
 public with sharing class PostController {
     @AuraEnabled
     public static Post__c savePost (Post__c post){
+       User usr = [Select Id, ManagerId FROM User WHERE Id = :UserInfo.getUserId()];
+       post.Approver__c = usr.ManagerId;
        insert post;
        return post;
     }

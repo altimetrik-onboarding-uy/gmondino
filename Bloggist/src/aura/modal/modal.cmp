@@ -31,10 +31,7 @@
           </div>
           
           <div class="slds-modal__content slds-p-around--large">
-              <ui:inputTextArea aura:id="textarea" 
-                                value="{!v.Post.Content__c}" 
-                                label="Type something" 
-        						updateOn="keyup" keyup="{!c.handleKeyup}" />
+              <textarea class="slds-textarea" value="{!v.Post.Content__c}" placeholder="Type something..." onkeydown="{!c.handleKeyDown}" onkeyup="{!c.handleKeyup}"></textarea>
   		      <br></br>
               <p>Preview:</p>
               <br></br>

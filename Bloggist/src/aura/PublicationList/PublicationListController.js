@@ -82,5 +82,6 @@
         helper.updatePostContent(component,post.Status__c,post);
         console.log("event actualization handled");
         console.log(post.Content__c);
+        console.log(component.get("v.draftPost")[0].Content__c);
     }
 })
