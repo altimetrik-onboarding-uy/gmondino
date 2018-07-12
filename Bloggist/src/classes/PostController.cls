@@ -60,17 +60,4 @@ public with sharing class PostController {
     public static void saveMod(Post__c post) {
         update post;
     }
-/*    @AuraEnabled
-    public static Datetime actualDate() {
-       return Date.today();
-    }
-/*    @AuraEnabled
-    public static Post__c postStatValue2(Post__c post) {
-        List<Post__c> fetchedPosts = [SELECT Id, Name, Title__c, Content__c, Tag__c, Status__c
-                		FROM Post__c
-                		WHERE Id = :post.id
-                		AND OwnerId = :UserInfo.getUserId()];
-        Post__c fetchedPost = fetchedPosts[0];
-        return fetchedPost;
-    } */
 }

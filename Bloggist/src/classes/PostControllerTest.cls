@@ -40,8 +40,7 @@ public class PostControllerTest {
         if(published1.size()== 1) {
             PostController.discardPost(pr);
         }        
-        Test.stopTest();
-       
+        Test.stopTest();       
             
         List<Post__c> draft = [SELECT Id, Status__c, Title__c, Tag__c
                				   FROM Post__c
@@ -100,11 +99,34 @@ public class PostControllerTest {
          Post__c chiv = published[0];
          boolean chib = chiv.Published_Date__c != null;
          System.assertEquals(true,(published.size()==1)&&chib);
-      
     }    
     
     private static testMethod void lookUp(){
         List<User> usr = customLookUpController.fetchLookUpValues('Test Dave','User');
         System.assertEquals(1, usr.size());
+    }
+    
+    @isTest static void batchTest(){
+        User dave = [SELECT Id FROM User WHERE Alias = 'tdave'];
+        User manager = [SELECT Id FROM User WHERE Id=:UserInfo.getUserId()];
+        system.runAs(dave){
+       	 Post__c dr = new Post__c (Title__c='titledr',Status__c='Draft',Tag__c='tagd');
+         Post__c sr = new Post__c (Title__c='titlesr',Status__c='Draft',Tag__c='tagd');
+           Post__c pst = PostController.savePost(dr);
+           Post__c pst2 = PostController.savePost(sr);
+           PostController.submitPost(dr);
+           PostController.submitPost(sr);
+        
+        Test.startTest();
+        emailNotificationBatch eNB = new emailNotificationBatch();
+        Id batchId = Database.executeBatch(eNB);
+        Test.stopTest();
+        }
+    } 
+    
+    @isTest static void schedTest(){
+    scheduledBatch m = new scheduledBatch();
+    String sch = '0 0 0 1/1 * ? *';
+    String jobID = system.schedule('Sched posts', sch, m);
     }
 }
